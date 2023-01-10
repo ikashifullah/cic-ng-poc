@@ -1,1 +1,22 @@
-<p>transaction-details works!</p>
+<div  class="form-wrapper">
+  <h1> Update Form Comments </h1>
+  <form [formGroup]="updateTransaction" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>ID</mat-label>
+      <input matInput formControlName="id" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Date</mat-label>
+      <input matInput formControlName="date" readonly>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Comments</mat-label>
+      <textarea matInput formControlName="comments" (keypress)="keyPressAlphaNumericWithCharacters($event)"></textarea>
+      <mat-error *ngIf="(registerFormControl.comments.invalid && (registerFormControl.comments.dirty || registerFormControl.comments.touched))">Name is required</mat-error>
+    </mat-form-field>
+    <div class="btns-wrapper">
+      <button mat-raised-button class="btn" color="accent" [routerLink]="['/transaction-list']">Cancel</button>
+      <button mat-raised-button class="btn" color="primary" type="submit" [disabled]="!updateTransaction.valid">Update</button>
+    </div>
+  </form>
+</div>
